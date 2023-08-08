@@ -111,11 +111,13 @@ target_include_directories( ${TARGET}
         )
 
 if (${CDMI_ADAPTER_IMPLEMENTATION} STREQUAL "broadcom-svp")
+    add_definitions( -DUSE_SVP=1 )
     find_package(NEXUS REQUIRED)
     target_link_libraries(${TARGET}
             PRIVATE
             NEXUS::NEXUS
             -lbrcmsvpmeta
+            -lgstsvpext
             )
 endif()
 
